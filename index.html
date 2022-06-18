@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Interactive rating component</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        width: 100vw;
+        height: 100vh;
+        background-color: #141519;
+
+        font-family: "Overpass", sans-serif;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container .content {
+        position: relative;
+
+        width: 410px;
+        height: 410px;
+        background-color: #202731;
+
+        opacity: 0.9;
+        border-radius: 30px;
+
+        padding: 2rem;
+      }
+
+      .container .content span {
+        top: 20px;
+
+        width: 50px;
+        height: 50px;
+        background-color: #262f38;
+
+        border-radius: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container .content span.active {
+        color: hsl(0, 0%, 100%);
+        background-color: hsl(217, 12%, 63%);
+      }
+
+      .container .content span:not(#star):hover {
+        cursor: pointer;
+        color: hsl(0, 0%, 100%);
+        background-color: hsl(25, 97%, 53%);
+      }
+
+      .container .content .text-content {
+        margin: 2rem 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .container .content .text-content h2 {
+        color: hsl(0, 0%, 100%);
+        font-size: 27px;
+        margin-bottom: -13px;
+      }
+
+      .container .content .text-content p {
+        color: hsl(217, 12%, 63%);
+        line-height: 25px;
+        font-size: 15px;
+      }
+
+      .container .content .text-content .rating-area {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.45rem;
+      }
+
+      .container .content .text-content .rating-area {
+        color: hsl(217, 12%, 63%);
+      }
+
+      .container .content .text-content .submit-button {
+        width: 100%;
+        height: 50px;
+
+        background-color: hsl(25, 97%, 53%);
+        color: hsl(0, 0%, 100%);
+
+        border-radius: 30px;
+
+        letter-spacing: 2px;
+
+        font-weight: 700;
+        font-size: 15px;
+      }
+
+      .container .content .text-content .submit-button:hover {
+        background-color: hsl(0, 0%, 100%);
+        color: hsl(25, 97%, 53%);
+        cursor: pointer;
+      }
+
+      .container .content .selected-area {
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .container .content .selected-area span {
+        margin-top: 2rem;
+        width: 200px;
+        height: 30px;
+        border-radius: 20px;
+        background-color: #262f38;
+      }
+
+      .container .content .selected-area span p {
+        color: hsl(25, 97%, 53%);
+        font-size: 15px;
+      }
+
+      .container .content .thank-you-content {
+        text-align: center;
+        margin: 2rem 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .container .content .thank-you-content h2 {
+        color: hsl(0, 0%, 100%);
+        font-size: 27px;
+        margin-bottom: -13px;
+      }
+
+      .container .content .thank-you-content p {
+        margin: 0 5px;
+        color: hsl(217, 12%, 63%);
+        line-height: 25px;
+        font-size: 15px;
+      }
+
+      .attribution {
+        margin-top: 1rem;
+        font-size: 11px;
+        text-align: center;
+        color: hsl(0, 0%, 100%);
+      }
+
+      .attribution a {
+        color: hsl(25, 97%, 53%);
+      }
+
+      .attribution a:hover {
+        color: hsl(228, 45%, 44%);
+      }
+
+      @media screen and (max-width: 768px) {
+        .container .content {
+          width: 350px;
+          height: 390px;
+        }
+
+        .container .content .text-content p {
+          font-size: 14px;
+        }
+
+        .container .content span {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <span id="star">
+          <img
+            src="./images/icon-star.svg"
+            alt="orange star icon inside a gray circle"
+          />
+        </span>
+
+        <div class="text-content">
+          <h2>How did we do?</h2>
+          <p>
+            Please let us know how we did with your support request. All
+            feedback is appreciated to help us improve our offering!
+          </p>
+          <div class="rating-area">
+            <span class="circle-number" id="vote-1" value="1">1</span>
+            <span class="circle-number" id="vote-2" value="2">2</span>
+            <span class="circle-number" id="vote-3" value="3">3</span>
+            <span class="circle-number" id="vote-4" value="4">4</span>
+            <span class="circle-number" id="vote-5" value="5">5</span>
+          </div>
+          <button class="submit-button" onClick="submitRating()">SUBMIT</button>
+        </div>
+      </div>
+      <div class="content">
+        <div class="selected-area">
+          <img
+            src="./images/illustration-thank-you.svg"
+            alt="illustration with a phone"
+          />
+          <span>
+            <p id="rate-result"></p>
+          </span>
+        </div>
+        <div class="thank-you-content">
+          <h2>Thank you!</h2>
+          <p>
+            We appreciate you taking the time to give a rating. If you ever need
+            more support, don't hesitate to get in touch!
+          </p>
+        </div>
+      </div>
+      <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by
+        <a href="https://georgelucasdev.vercel.app/">George Lucas</a>.
+      </div>
+    </div>
+
+    <script>
+      const getContentNow = document.querySelectorAll(".content");
+      const getAllRatingOptions = document.querySelectorAll(".circle-number");
+
+      getContentNow[1].style.display = "none";
+
+      let voteChoice = 0;
+
+      getAllRatingOptions.forEach((option) =>
+        option.addEventListener("click", selectOption)
+      );
+
+      function selectOption(props) {
+        // Change the value in voteChoice
+        voteChoice = Number(props.target.innerText);
+
+        getAllRatingOptions.forEach((option, index) => {
+          // Add a new class
+          if (index + 1 === voteChoice) {
+            option.classList.add("active");
+          } else {
+            option.classList.remove("active");
+          }
+        });
+      }
+
+      function submitRating() {
+        const rateResult = document.getElementById("rate-result");
+
+        getContentNow[0].style.display = "none";
+        getContentNow[1].style.display = "block";
+
+        rateResult.innerHTML = `You selected ${voteChoice} out of ${getAllRatingOptions.length}`;
+      }
+    </script>
+  </body>
+</html>
